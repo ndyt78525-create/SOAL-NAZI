@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffb6d9">
+<title>دنیای نازی 🎀</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --pink:#ff69ad;
+  --soft:#fff0f7;
+  --ink:#66334e;
+  --card:#ffffffeb;
+  --shadow:0 15px 50px #c95e9520;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Vazirmatn,Tahoma,sans-serif;
+  background:linear-gradient(140deg,#fff0f7,#ffe1ef,#fff8fc);
+  color:var(--ink);overflow-x:hidden;transition:background .5s,color .4s
+}
+button,input,textarea{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible{outline:3px solid #b46aff;outline-offset:3px}
+#app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px 14px}
+.card{
+  width:min(100%,540px);background:var(--card);border:1px solid #ffffff;
+  border-radius:30px;padding:27px 23px;box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);position:relative;overflow:hidden;
+  animation:appear .45s ease both
+}
+@keyframes appear{from{opacity:0;transform:translateY(13px) scale(.98)}to{opacity:1;transform:none}}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:20px}
+.pill{background:var(--soft);padding:8px 12px;border-radius:30px;font-size:12px;font-weight:800}
+.progress{height:7px;background:#f6dce9;border-radius:30px;overflow:hidden;margin:12px 0 23px}
+#bar{height:100%;width:0;background:linear-gradient(90deg,#ff9dca,#d88aff);border-radius:30px;transition:width .4s}
+h1,h2,p{margin-top:0}
+h1{font-size:clamp(26px,7vw,38px);line-height:1.6;margin-bottom:8px}
+h2{font-size:23px;line-height:1.8}
+p{line-height:2}
+.muted{opacity:.7;font-size:13px}
+.center{text-align:center}
+.hero{font-size:72px;line-height:1.3;filter:drop-shadow(0 10px 12px #d76ba833)}
+.avatar{
+ width:145px;height:145px;margin:8px auto 18px;position:relative;
+ border-radius:48% 48% 43% 43%;
+ background:radial-gradient(circle at 35% 25%,#fff8fc,#ffc4e0 65%,#f88dbf);
+ display:grid;place-items:center;box-shadow:inset 0 -10px 20px #ec6fa733,0 15px 35px #d878a333;
+ animation:bob 3s ease-in-out infinite
+}
+.avatar .face{font-size:88px;filter:drop-shadow(0 7px 3px #d881a722)}
+.avatar:after{content:"🎀";position:absolute;top:-13px;right:4px;font-size:37px;transform:rotate(15deg)}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+.speech{
+ position:relative;background:var(--soft);border-radius:19px;padding:14px 16px;
+ margin:14px 0 20px;line-height:2;text-align:center;font-weight:600
+}
+.speech:before{content:"";position:absolute;top:-8px;left:calc(50% - 8px);border-width:0 9px 9px;border-style:solid;border-color:transparent transparent var(--soft)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:20px}
+.btn{
+ border:0;border-radius:17px;padding:14px 12px;font-weight:800;
+ transition:transform .17s,filter .17s,box-shadow .17s;
+ box-shadow:0 5px 0 #0000000c;min-height:51px
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.02)}
+.btn:active{transform:scale(.97)}
+.primary{background:var(--pink);color:white;box-shadow:0 6px 0 color-mix(in srgb,var(--pink),#8b2456 22%)}
+.secondary{background:var(--soft);color:var(--ink)}
+.full{grid-column:1/-1}
+.field{width:100%;border:2px solid #f6d5e5;border-radius:16px;background:#fff;padding:15px;color:#573247;outline:none}
+.field:focus{border-color:var(--pink)}
+textarea.field{resize:vertical;min-height:85px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:20px}
+.option{
+ border:2px solid #f6dce9;background:#fff;border-radius:18px;padding:17px 10px;
+ color:var(--ink);font-weight:800;transition:.2s
+}
+.option:hover{border-color:var(--pink);transform:translateY(-3px);background:var(--soft)}
+.swatch{display:block;width:40px;height:40px;border-radius:50%;margin:0 auto 8px;border:3px solid #ffffff;box-shadow:0 0 0 1px #ddd}
+.dots{display:flex;justify-content:center;gap:5px;margin:14px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--pink);animation:dot 1s infinite alternate}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes dot{to{transform:translateY(-7px);opacity:.4}}
+.float-heart{position:fixed;z-index:8;pointer-events:none;animation:fly 2.8s ease-out forwards;font-size:25px}
+@keyframes fly{0%{opacity:0;transform:translateY(30px) scale(.4) rotate(-15deg)}15%{opacity:1}100%{opacity:0;transform:translateY(-240px) translateX(var(--drift)) scale(1.2) rotate(20deg)}}
+#noBtn{transition:font-size .25s,padding .25s,transform .25s}
+.game-board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px auto;max-width:310px}
+.game-cell{aspect-ratio:1;border:0;border-radius:18px;background:var(--soft);font-size:32px;box-shadow:inset 0 0 0 1px #f6d4e5}
+.game-cell:disabled{cursor:default}
+.meter{height:10px;border-radius:20px;background:#f5dce9;overflow:hidden;margin:8px 0}
+.meter span{display:block;width:0;height:100%;background:var(--pink);transition:width .25s}
+.result-row{text-align:right;background:var(--soft);padding:12px 14px;border-radius:14px;margin:8px 0;overflow-wrap:anywhere}
+.result-row b{display:block;font-size:12px;opacity:.65;margin-bottom:4px}
+.result-row span{font-weight:700}
+.small{font-size:12px;opacity:.65}
+.ending{font-size:55px;margin:10px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#56344b;color:white;padding:12px 20px;border-radius:30px;opacity:0;pointer-events:none;transition:.3s;z-index:30;max-width:90%;text-align:center;font-size:13px}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#loading{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:linear-gradient(145deg,#ffecf6,#ffd1e6,#fff6fc);transition:opacity .7s,visibility .7s}
+#loading.done{opacity:0;visibility:hidden;pointer-events:none}
+.load-inner{text-align:center;padding:25px}
+.load-inner .avatar{width:175px;height:175px}
+.load-title{font-size:29px;font-weight:900}
+@media(max-width:390px){.card{padding:22px 16px}.options{gap:8px}.option{padding:14px 6px}.hero{font-size:60px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="loading">
+ <div class="load-inner">
+  <div class="avatar"><span class="face">👧🏻</span></div>
+  <div class="load-title">دنیای نازی 🎀</div>
+  <p id="loadText">دارم موهامو مرتب می‌کنم... 💗</p>
+  <div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+  <div class="muted">آماده‌ای برای یه ماجراجویی بامزه؟</div>
+ </div>
+</div>
+
+<div id="app"></div>
+<div id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const app = $('#app');
+
+const data = {
+ name:'نازی', likesMe:'', boyType:'', color:'', food:'', country:'',
+ marriageAge:'', hamid:'', bestFriend:'', game:'', gameScore:0
+};
+
+const themes = {
+ pink:{pink:'#ff69ad',soft:'#fff0f7',ink:'#66334e',card:'#ffffffeb',bg:'linear-gradient(140deg,#fff0f7,#ffe1ef,#fff8fc)'},
+ white:{pink:'#b98aa8',soft:'#f8f2f7',ink:'#51434f',card:'#ffffffef',bg:'linear-gradient(140deg,#fff,#f4eff5,#fff)'},
+ blue:{pink:'#54a9ed',soft:'#eaf5ff',ink:'#234b70',card:'#ffffffed',bg:'linear-gradient(140deg,#eff8ff,#dceeff,#f9fcff)'},
+ purple:{pink:'#ac7bea',soft:'#f4edff',ink:'#583b79',card:'#ffffffed',bg:'linear-gradient(140deg,#f8f1ff,#e9dcff,#fff8ff)'}
+};
+function setTheme(c){
+ const t=themes[c]||themes.pink;
+ for(const k in t) document.documentElement.style.setProperty('--'+k,t[k]);
+ document.body.style.background=t.bg;
+ data.color=c;
+}
+function toast(t){
+ const el=$('#toast');el.textContent=t;el.classList.add('show');
+ clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2400);
+}
+function hearts(){
+ const words=['سلام نازییی 💗','نازی جون سلام! 🎀','قلبم گفت سلام بده 💖','تو خیلی کیوتی! 🌸'];
+ for(let i=0;i<8;i++){
+  setTimeout(()=>{
+   const e=document.createElement('div');e.className='float-heart';
+   e.textContent=['💗','💕','💖','💘','🌸'][Math.floor(Math.random()*5)];
+   e.style.left=(5+Math.random()*85)+'vw';
+   e.style.top=(55+Math.random()*35)+'vh';
+   e.style.setProperty('--drift',(Math.random()*120-60)+'px');
+   document.body.appendChild(e);setTimeout(()=>e.remove(),3000);
+   if(i%2===0)toast(words[Math.floor(Math.random()*words.length)]);
+  },i*240);
+ }
+}
+let step=0,noCount=0,gameBoard=[],gameMoves=0,gameFound=0;
+const stepsTotal=10;
+
+function shell(content,progress=true){
+ app.innerHTML=`<section class="card">
+  <div class="top"><span class="pill">🎀 پروژهٔ نازی</span><span class="pill">${step===0?'شروع ماجرا':`مرحله ${Math.min(step,stepsTotal)} از ${stepsTotal}`}</span></div>
+  ${progress?`<div class="progress"><div id="bar" style="width:${Math.min(100,step/stepsTotal*100)}%"></div></div>`:''}
+  ${content}
+ </section>`;
+}
+function talk(text){return `<div class="speech" id="speech">${text}</div>`}
+function avatar(){return `<div class="avatar"><span class="face">👧🏻</span></div>`}
+function go(n){step=n;render()}
+function start(){
+ shell(`<div class="center">${avatar()}<h1>سلام نازییی! 🎀</h1>
+ ${talk('من پریِ شیطونِ دنیای توام! 😌💗 اومدم یه سری سؤال بپرسم. قول می‌دم فضولی‌هام در حد مجاز باشه... شاید! 😂')}
+ <p class="muted">این تست قراره کلی بخندونتت؛ جواب‌ها رو خودت انتخاب کن.</p>
+ <button class="btn primary full" onclick="hearts();go(1)">بزن بریم نازی! 💕</button></div>`,false);
+}
+function render(){
+ if(step===0)return start();
+ if(step===1){
+  shell(`<div class="center">${avatar()}<h2>یه سؤال خیلی مهم! 👀</h2>
+  ${talk('نازی خانوم... منو دوست داری؟ 🥹💗')}
+  <div class="actions">
+   <button class="btn primary" onclick="data.likesMe='آره 💗';go(2)">آرههه 😍</button>
+   <button class="btn secondary" id="noBtn" onclick="nope()">نه 😈</button>
+  </div><p class="small">هشدار: دکمهٔ نه از نظر روانی خیلی لجبازه! 😂</p></div>`);
+  return;
+ }
+ if(step===2){
+  shell(`<div class="center">${avatar()}<h2>خب خب، بریم سراغ سلیقه‌ها! 😏</h2>
+  ${talk('تایپت چه نوع پسریه؟ با جزئیات بگو! من قول می‌دم قضاوت نکنم... زیاد 😂')}
+  <textarea class="field" id="boy" maxlength="400" placeholder="مثلاً مهربون، بامزه، قدبلند..."></textarea>
+  <button class="btn primary full" onclick="saveText('boy','boyType',3)">ثبت سلیقه‌هام 💌</button></div>`);
+  return;
+ }
+ if(step===3){
+  shell(`<div class="center">${avatar()}<h2>رنگ موردعلاقه‌ت چیه؟ 🎨</h2>
+  ${talk('هر کدوم رو بزنی کل دنیامون همون رنگی می‌شه! فقط حواست باشه، قدرت دست توئه 😎')}
+  <div class="options">
+   ${colorOption('pink','صورتی','#ff9fc9','🎀')}
+   ${colorOption('white','سفید','#fff','🤍')}
+   ${colorOption('blue','آبی','#80c5ff','🩵')}
+   ${colorOption('purple','بنفش','#c4a0ff','💜')}
+  </div></div>`);
+  return;
+ }
+ if(step===4){
+  shell(`<div class="center">${avatar()}<h2>غذای موردعلاقه‌ت چیه؟ 🍕</h2>
+  ${talk('بگو ببینم چی دوست داری بخوری؟ من الان با شنیدن اسم پیتزا دارم گرسنه می‌شم 😂')}
+  <input class="field" id="food" maxlength="120" placeholder="اسم غذای خوشمزه‌ات...">
+  <button class="btn primary full" onclick="saveText('food','food',5)">ثبت غذای خوشمزه 🍓</button></div>`);
+  return;
+ }
+ if(step===5){
+  shell(`<div class="center">${avatar()}<h2>کشور موردعلاقه‌ت کجاست؟ 🌍</h2>
+  ${talk('اگه یه بلیت رایگان داشتی، کجا می‌رفتی؟ من که چمدونم رو بستم! البته هنوز پاسپورتم عروسکیه 😂')}
+  <input class="field" id="country" maxlength="120" placeholder="اسم کشور رؤیایی‌ات...">
+  <button class="btn primary full" onclick="saveText('country','country',6)">پرواز کنیم! ✈️</button></div>`);
+  return;
+ }
+ if(step===6){
+  shell(`<div class="center">${avatar()}<h2>یه سؤال از آینده! 💍</h2>
+  ${talk('دوست داری چندسالگی ازدواج کنی؟ راحت بگو؛ اینجا هیچ جواب درست یا غلطی وجود نداره. من فقط کنجکاوم! 👀')}
+  <input class="field" id="age" type="number" min="16" max="100" placeholder="سن دلخواهت به عدد...">
+  <button class="btn primary full" onclick="saveAge()">ثبت نقشهٔ آینده 💌</button></div>`);
+  return;
+ }
+ if(step===7){
+  shell(`<div class="center">${avatar()}<h2>نظر نازی دربارهٔ حمید چیه؟ 😂</h2>
+  ${talk('حالا که اسم حمید اومد، من یه صندلی میارم بشینم! 🤭 هرچی دلت می‌خواد بگو؛ تعریف، انتقاد یا حتی شکایت رسمی!')}
+  <textarea class="field" id="hamid" maxlength="500" placeholder="حمید از نظر من..."></textarea>
+  <button class="btn primary full" onclick="saveText('hamid','hamid',8)">ارسال گزارش محرمانه 😂</button></div>`);
+  return;
+ }
+ if(step===8){
+  shell(`<div class="center">${avatar()}<h2>بهترین دوستت کیه؟ 🫶</h2>
+  ${talk('اسم رفیق صمیمی‌تو بگو! قول می‌دم رازدار باشم... البته من یه کاراکترم، حافظه‌م از ماهی قرمز بهتره 😂')}
+  <input class="field" id="friend" maxlength="120" placeholder="اسم بهترین دوستت...">
+  <button class="btn primary full" onclick="saveText('friend','bestFriend',9)">ثبت اسم رفیق 💗</button></div>`);
+  return;
+ }
+ if(step===9){game();return}
+ if(step===10){finish();return}
+}
+function colorOption(key,label,color,emoji){
+ return `<button class="option" onclick="chooseColor('${key}')"><span class="swatch" style="background:${color}"></span>${emoji} ${label}</button>`;
+}
+function nope(){
+ noCount++;
+ const b=$('#noBtn');
+ const size=Math.min(16+noCount*10,160);
+ b.style.fontSize=size+'px';
+ b.style.padding=Math.min(14+noCount*7,80)+'px 10px';
+ b.style.zIndex='5';
+ b.style.position='relative';
+ b.textContent=['نه 😈','نَــه!','نهههه؟ 🥺','دیگه جا ندارم! 😂','نازییی 😂'][Math.min(noCount-1,4)];
+ if(noCount>=4){
+  b.style.position='fixed';b.style.inset='0';b.style.width='100vw';b.style.height='100vh';
+  b.style.borderRadius='0';b.style.fontSize='clamp(45px,15vw,130px)';
+  b.style.zIndex='19';b.style.opacity='.97';
+  b.textContent='نــــه؟! 😂💗';
+  b.onclick=()=>{noCount++;b.textContent='نازی بالاخره آره رو بزن! 😂';if(noCount>=6){b.remove();toast('راه فرار باز شد! حالا آره رو انتخاب کن 😂');render()}};
+  toast('دکمهٔ نه کل سایت رو تصرف کرد! 😂');
+ }else toast(['مطمئنی؟ 🥺','یه بار دیگه فکر کن! 😂','نه داره چاق می‌شه!'][Math.min(noCount-1,2)]);
+}
+function chooseColor(c){
+ setTheme(c);data.color=c;toast('وای! کل دنیا شد '+({pink:'صورتی 🎀',white:'سفید 🤍',blue:'آبی 🩵',purple:'بنفش 💜'}[c]));
+ hearts();go(4);
+}
+function saveText(id,key,next){
+ const el=$('#'+id),v=el.value.trim();
+ if(!v){toast('یه چیزی بنویس نازی جون! 🥹');el.focus();return}
+ data[key]=v;
+ const replies={
+  boyType:`وااای! پس تایپت اینه: «${v}» 😂💗 خب خب، رفت تو پرونده!`,
+  food:`«${v}»؟! 🤤 نازی جان، منم دعوت بودم یا فقط باید به غذا فکر کنم؟ 😂`,
+  country:`«${v}»! 😍 پس مقصد بعدی ما مشخص شد. فقط هزینهٔ بلیت با کیه؟ 🤭`,
+  hamid:`دربارهٔ حمید گفتی: «${v}» 😂 من فعلاً قاضی نیستم، ولی پرونده خیلی جالبه!`,
+  bestFriend:`«${v}»! 💕 اسم رفیق ویژه ثبت شد. لطفاً برای منم یه دوست عروسکی پیدا کن!`
+ };
+ if(key==='boyType'||key==='food'||key==='country'||key==='hamid'||key==='bestFriend'){
+  shell(`<div class="center">${avatar()}<h2>نظر کارشناس نازی‌شناسی! 🤓</h2>${talk(replies[key])}<button class="btn primary full" onclick="go(${next})">خب بعدی! ➜</button></div>`);
+  return;
+ }
+ go(next);
+}
+function saveAge(){
+ const v=Number($('#age').value);
+ if(!v||v<16||v>100){toast('یه سن معتبر بنویس نازی! 💗');return}
+ data.marriageAge=v+' سالگی';
+ shell(`<div class="center">${avatar()}<h2>ثبت شد! 💍</h2>${talk(`${v} سالگی؟! 😍 باشه، من تقویم رو علامت می‌زنم! البته دعوت‌نامهٔ عروسی برای منم بفرستیااا 😂🎀`)}<button class="btn primary full" onclick="go(7)">ادامه بده 💗</button></div>`);
+}
+const icons=['🍓','🎀','🧸','🌸','💗','🦋','🍓','🎀','🧸'];
+function game(){
+ gameBoard=[...icons].sort(()=>Math.random()-.5);gameMoves=0;gameFound=0;
+ shell(`<div class="center">${avatar()}<h2>بازی پیدا کردن قلب‌ها! 💗</h2>
+ ${talk('نازی جون! دوتا کارت شبیه هم پیدا کن. هرچی بیشتر پیدا کنی، لقب کیوت‌تری می‌گیری! 😎')}
+ <p class="muted">کارت‌ها رو باز کن و جفت‌های مشابه رو پیدا کن.</p>
+ <div class="game-board" id="board"></div>
+ <p>جفت‌های پیدا شده: <b id="found">۰</b> از ۴</p>
+ <div class="meter"><span id="meter"></span></div>
+ <p class="muted" id="gameMsg">بزن بریم قهرمان! 🎮</p>
+ <button class="btn primary full" id="nextGame" style="display:none" onclick="data.gameScore=gameFound;data.game='جفت‌یابی کیوت';go(10)">دیدن نتیجه‌ها 🎀</button>
+ </div>`);
+ const board=$('#board');
+ let chosen=[],locked=false;
+ gameBoard.forEach((v,i)=>{
+  const b=document.createElement('button');b.className='game-cell';b.textContent='❔';b.setAttribute('aria-label','کارت مخفی');
+  b.onclick=()=>{
+   if(locked||b.disabled||chosen.some(x=>x.i===i))return;
+   b.textContent=v;b.setAttribute('aria-label',v);chosen.push({i,v,b});
+   if(chosen.length===2){
+    gameMoves++;
+    if(chosen[0].v===chosen[1].v){
+     chosen.forEach(x=>{x.b.disabled=true;x.b.style.background='#e9ffef'});gameFound++;
+     $('#found').textContent=gameFound;$('#meter').style.width=(gameFound/4*100)+'%';
+     $('#gameMsg').textContent=['آفرین نازی! 🌸','چقدر تیزهوشی! 🦋','وای چه حافظه‌ای! 💗','ملکهٔ بازی‌ها شدی! 👑'][gameFound-1]||'آفرین!';
+     chosen=[];if(gameFound===4){$('#nextGame').style.display='block';$('#gameMsg').textContent='همهٔ جفت‌ها پیدا شدن! تو برنده‌ای! 🎉';}
+    }else{
+     locked=true;setTimeout(()=>{chosen.forEach(x=>{x.b.textContent='❔';x.b.setAttribute('aria-label','کارت مخفی')});chosen=[];locked=false},700);
+    }
+   }
+  };board.appendChild(b);
+ });
+}
+function finish(){
+ const colorNames={pink:'صورتی 🎀',white:'سفید 🤍',blue:'آبی 🩵',purple:'بنفش 💜'};
+ const fields=[
+  ['اسم','نازی 🎀'],['دوست داشتن',''+data.likesMe],['تایپ پسر موردعلاقه',data.boyType],
+  ['رنگ موردعلاقه',colorNames[data.color]||'ثبت نشده'],['غذای موردعلاقه',data.food],
+  ['کشور رؤیایی',data.country],['سن دلخواه ازدواج',data.marriageAge],
+  ['نظر دربارهٔ حمید',data.hamid],['بهترین دوست',data.bestFriend],
+  ['بازی موردعلاقه','پیدا کردن جفت‌های کیوت'],['جفت‌های پیدا شده',`${data.gameScore} از ۴`]
+ ];
+ const rows=fields.map(([k,v])=>`<div class="result-row"><b>${esc(k)}</b><span>${esc(v||'ثبت نشده')}</span></div>`).join('');
+ shell(`<div class="center"><div class="ending">👑🎀</div><h1>پروندهٔ نازی آماده‌ست!</h1>
+ ${talk('تبریک! تو با موفقیت از تمام سؤال‌های فضولانهٔ من عبور کردی! 😂💗 اینم شناسنامهٔ اختصاصی خودت.')}
+ <div id="results">${rows}</div>
+ <p class="small">این اطلاعات فقط در همین صفحه نگهداری می‌شه؛ با بستن یا تازه‌کردن صفحه پاک می‌شه.</p>
+ <div class="actions">
+ <button class="btn primary" onclick="copyResults()">📋 کپی اطلاعات</button>
+ <button class="btn secondary" onclick="saveImage()">🖼️ ذخیره عکس</button>
+ <button class="btn secondary full" onclick="location.reload()">🔄 بازی از اول</button>
+ </div></div>`);
+}
+function esc(v){
+ return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function resultsText(){
+ return '🎀 شناسنامه اختصاصی نازی 🎀\n\n'+[
+  ['اسم','نازی'],['دوست داشتن',data.likesMe],['تایپ پسر موردعلاقه',data.boyType],
+  ['رنگ موردعلاقه',({pink:'صورتی',white:'سفید',blue:'آبی',purple:'بنفش'})[data.color]],
+  ['غذای موردعلاقه',data.food],['کشور رؤیایی',data.country],
+  ['سن ازدواج',data.marriageAge],['نظر دربارهٔ حمید',data.hamid],
+  ['بهترین دوست',data.bestFriend],['جفت‌های بازی',data.gameScore+' از ۴']
+ ].map(([k,v])=>k+': '+(v||'ثبت نشده')).join('\n');
+}
+async function copyResults(){
+ try{await navigator.clipboard.writeText(resultsText());toast('اطلاعات کپی شد! 💗')}
+ catch(e){const t=document.createElement('textarea');t.value=resultsText();document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();toast('اطلاعات کپی شد! 💗')}
+}
+function saveImage(){
+ const lines=resultsText().split('\n');
+ const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
+ canvas.width=900;canvas.height=Math.max(1150,lines.length*48+240);
+ const grad=ctx.createLinearGradient(0,0,900,canvas.height);grad.addColorStop(0,'#fff0f7');grad.addColorStop(1,'#f4eaff');
+ ctx.fillStyle=grad;ctx.fillRect(0,0,900,canvas.height);
+ ctx.fillStyle='#ff69ad';ctx.font='bold 48px Tahoma';ctx.textAlign='center';ctx.fillText('🎀 شناسنامهٔ نازی 🎀',450,85);
+ ctx.fillStyle='#66334e';ctx.font='26px Tahoma';ctx.textAlign='right';
+ lines.forEach((line,i)=>ctx.fillText(line,830,160+i*48,770));
+ ctx.fillStyle='#d77aaa';ctx.font='20px Tahoma';ctx.textAlign='center';ctx.fillText('ساخته شده با عشق و کلی قلب 💗',450,canvas.height-45);
+ const a=document.createElement('a');a.download='shenasname-nazi.png';a.href=canvas.toDataURL('image/png');a.click();
+ toast('عکس شناسنامه آماده شد! 🎀');
+}
+setTimeout(()=>{$('#loadText').textContent='نازییی! بیا که منتظرتم 💗'},900);
+setTimeout(()=>{$('#loading').classList.add('done');hearts();start()},2200);
+</script>
+</body>
+</html>
